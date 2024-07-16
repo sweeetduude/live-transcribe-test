@@ -3,7 +3,7 @@ import numpy as np
 import wave
 import io
 import torch
-from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline, logging
 import concurrent.futures
 
 CHUNK = 1024
@@ -16,6 +16,8 @@ SILENCE_DURATION = 1.0  # Silence duration for determining the end of an audio c
 DEVICE = "cuda"
 TORCH_DTYPE = torch.float16
 MODEL_ID = "openai/whisper-large-v3"
+
+logging.set_verbosity_error()
 
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=6)
 
